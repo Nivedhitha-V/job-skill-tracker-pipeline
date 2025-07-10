@@ -69,7 +69,7 @@ daily_skills = df[df['DATE'].astype(str) == selected_date]
 # ------------------------
 # 📊 BAR CHART - Top Skills
 # ------------------------
-st.subheader("Top 15 Skills on Selected Date")
+st.subheader(f"Top 15 Skills on Selected Date : {selected_date}")
 if not daily_skills.empty:
     top_skills = daily_skills.sort_values("COUNT", ascending=False).head(15)
     st.bar_chart(top_skills.set_index("SKILL")["COUNT"])
