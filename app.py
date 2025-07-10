@@ -29,6 +29,8 @@ conn = snowflake.connector.connect(
 st.title("📊 Job Skill Tracker Dashboard")
 st.markdown("Explore top job skills from Snowflake data — filter by date, visualize trends, and empower your hiring team.")
 
+from datetime import datetime
+
 # ------------------------
 # 🎛️ SIDEBAR FILTER
 # ------------------------
@@ -37,16 +39,10 @@ st.sidebar.header("🔍 Filters")
 # Get available dates from Snowflake
 date_query = "SELECT DISTINCT DATE FROM top_skills_daily ORDER BY DATE"
 date_df = pd.read_sql(date_query, conn)
-available_dates = date_df['DATE'].astype(str).tolist()
-
-# Sidebar select box for date
-from datetime import datetime
-
-# Convert DATE column to datetime
 date_df['DATE'] = pd.to_datetime(date_df['DATE'])
 available_dates = date_df['DATE'].dt.date.tolist()
 
-# Sidebar date slider (default latest date selected)
+# Sidebar slider to choose a single date
 selected_date = st.sidebar.slider(
     "📅 Select a Date",
     min_value=min(available_dates),
@@ -55,7 +51,7 @@ selected_date = st.sidebar.slider(
     format="YYYY-MM-DD"
 )
 
-# Convert back to string to match Snowflake data
+# Convert selected_date back to string for filtering
 selected_date = str(selected_date)
 
 # ------------------------
