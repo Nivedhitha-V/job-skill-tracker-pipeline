@@ -40,7 +40,23 @@ date_df = pd.read_sql(date_query, conn)
 available_dates = date_df['DATE'].astype(str).tolist()
 
 # Sidebar select box for date
-selected_date = st.sidebar.st.slider("Select a Date", options=available_dates)
+from datetime import datetime
+
+# Convert DATE column to datetime
+date_df['DATE'] = pd.to_datetime(date_df['DATE'])
+available_dates = date_df['DATE'].dt.date.tolist()
+
+# Sidebar date slider (default latest date selected)
+selected_date = st.sidebar.slider(
+    "📅 Select a Date",
+    min_value=min(available_dates),
+    max_value=max(available_dates),
+    value=max(available_dates),
+    format="YYYY-MM-DD"
+)
+
+# Convert back to string to match Snowflake data
+selected_date = str(selected_date)
 
 # ------------------------
 # 📥 LOAD DATA
