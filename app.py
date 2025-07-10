@@ -1,9 +1,42 @@
 import streamlit as st
 
-st.title("🚀 Job Skill Tracker Dashboard")
-st.markdown("Explore top skills from job data loaded from Snowflake.")
+# ------------------------
+# 🎯 PAGE CONFIG
+# ------------------------
+st.set_page_config(
+    page_title="Job Skill Trends Dashboard",
+    page_icon="📊",
+    layout="wide"
+)
 
-import streamlit as st
+# ------------------------
+# 🧠 HEADER
+# ------------------------
+st.title("📊 Job Skill Tracker Dashboard")
+st.markdown("Explore top job skills from Snowflake data — filter by date, visualize trends, and empower your hiring team.")
 
-st.title("✅ Streamlit is working!")
-st.write("If you're seeing this, the app is alive. Now add Snowflake logic.")
+# ------------------------
+# 🎛️ SIDEBAR FILTERS
+# ------------------------
+st.sidebar.header("🔍 Filters")
+
+# Placeholder for date filter (we’ll make this dynamic later)
+selected_date = st.sidebar.selectbox(
+    "Select a Date",
+    options=[],
+    index=0,
+    disabled=True,
+    help="This will be enabled after we connect to Snowflake."
+)
+
+# ------------------------
+# 📊 MAIN VIEW
+# ------------------------
+st.subheader("Top 15 Skills on Selected Date")
+st.info("Bar chart will show here once data is loaded.")
+
+st.subheader("Skill Trend Over Time")
+st.info("Line chart will show here once data is loaded.")
+
+st.subheader("📄 Raw Data")
+st.dataframe([], height=200)
