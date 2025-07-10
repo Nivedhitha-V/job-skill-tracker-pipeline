@@ -1,3 +1,22 @@
+import snowflake.connector
+import pandas as pd
+import streamlit as st
+
+# Snowflake connection details
+conn = snowflake.connector.connect(
+    user=st.secrets["snowflake"]["user"],
+    password=st.secrets["snowflake"]["password"],
+    account=st.secrets["snowflake"]["account"],
+    warehouse=st.secrets["snowflake"]["warehouse"],
+    database=st.secrets["snowflake"]["database"],
+    schema=st.secrets["snowflake"]["schema"]
+)
+
+
+
+
+
+
 import streamlit as st
 
 # ------------------------
@@ -40,3 +59,21 @@ st.info("Line chart will show here once data is loaded.")
 
 st.subheader("📄 Raw Data")
 st.dataframe([], height=200)
+
+
+# ------------------------
+# 🎛️ SIDEBAR FILTERS
+# ------------------------
+st.sidebar.header("🔍 Filters")
+
+# Get available dates from Snowflake
+date_query = "SELECT DISTINCT date FROM top_skills_daily ORDER BY date"
+date_df = pd.read_sql(date_query, conn)
+available_dates = date_df['DATE'].astype(str).tolist()
+
+# Sidebar date filter
+selected_date = st.sidebar.selectbox(
+    "Select a Date",
+    options=available_dates
+)
+
