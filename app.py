@@ -79,7 +79,7 @@ else:
 # ------------------------
 # 📈 TREND LINE CHART (User-selected skill)
 # ------------------------
-st.sidebar.header("📌 Skill Trend")
+st.sidebar.header("💡 Skill Trend")
 selected_skill = st.sidebar.selectbox("Choose a Skill", sorted(df['SKILL'].unique()))
 
 st.subheader(f"📈 Skill Trend Over Time: {selected_skill}")
