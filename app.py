@@ -65,16 +65,20 @@ else:
     st.info("Bar chart will show here once data is loaded.")
 
 # ------------------------
-# 📈 LINE CHART - Trend of Top Skill
+# 📈 TREND LINE CHART (User-selected skill)
 # ------------------------
-st.subheader("Skill Trend Over Time")
-if not daily_skills.empty:
-    top_skill = daily_skills.sort_values("COUNT", ascending=False)["SKILL"].iloc[0]
-    trend_data = df[df["SKILL"] == top_skill]
-    trend_data_sorted = trend_data.sort_values("DATE")
-    st.line_chart(trend_data_sorted.set_index("DATE")["COUNT"])
+st.sidebar.header("📌 Skill Trend")
+selected_skill = st.sidebar.selectbox("Choose a Skill", sorted(df['SKILL'].unique()))
+
+st.subheader(f"📈 Skill Trend Over Time: {selected_skill}")
+
+trend_data = df[df['SKILL'] == selected_skill]
+
+if not trend_data.empty:
+    st.line_chart(trend_data.set_index('DATE')['COUNT'])
 else:
-    st.info("Line chart will show here once data is loaded.")
+    st.info("No trend data available for the selected skill.")
+
 
 # ------------------------
 # 📄 RAW DATA TABLE
