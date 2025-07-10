@@ -40,7 +40,7 @@ date_df = pd.read_sql(date_query, conn)
 available_dates = date_df['DATE'].astype(str).tolist()
 
 # Sidebar select box for date
-selected_date = st.sidebar.selectbox("Select a Date", options=available_dates)
+selected_date = st.sidebar.st.slider("Select a Date", options=available_dates)
 
 # ------------------------
 # 📥 LOAD DATA
@@ -85,3 +85,15 @@ else:
 # ------------------------
 st.subheader("📄 Raw Data")
 st.dataframe(daily_skills)
+
+# ------------------------
+# 📥 Download CSV Button
+# ------------------------
+csv = daily_skills.to_csv(index=False).encode('utf-8')
+st.download_button(
+    label="📤 Download This View as CSV",
+    data=csv,
+    file_name=f"{selected_date}_skills.csv",
+    mime='text/csv'
+)
+
