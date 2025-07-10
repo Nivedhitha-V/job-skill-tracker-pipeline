@@ -6,7 +6,7 @@ import snowflake.connector
 # 🎯 PAGE CONFIG
 # ------------------------
 st.set_page_config(
-    page_title="Job Skill Trends Dashboard",
+    page_title="Job Skill Tracker Dashboard",
     page_icon="📊",
     layout="wide"
 )
@@ -35,11 +35,11 @@ st.markdown("Explore top job skills from Snowflake data — filter by date, visu
 st.sidebar.header("🔍 Filters")
 
 # Get available dates from Snowflake
-date_query = "SELECT DISTINCT date FROM top_skills_daily ORDER BY date"
+date_query = "SELECT DISTINCT DATE FROM top_skills_daily ORDER BY DATE"
 date_df = pd.read_sql(date_query, conn)
 available_dates = date_df['DATE'].astype(str).tolist()
 
-# Sidebar date filter
+# Sidebar select box for date
 selected_date = st.sidebar.selectbox("Select a Date", options=available_dates)
 
 # ------------------------
@@ -48,32 +48,36 @@ selected_date = st.sidebar.selectbox("Select a Date", options=available_dates)
 query = "SELECT * FROM top_skills_daily"
 df = pd.read_sql(query, conn)
 
+# Ensure columns are uppercase
+df.columns = [col.upper() for col in df.columns]
+
 # Filter for selected date
-daily_skills = df[df['DATE'] == selected_date]
+daily_skills = df[df['DATE'].astype(str) == selected_date]
 
 # ------------------------
-# 📊 BAR CHART
+# 📊 BAR CHART - Top Skills
 # ------------------------
 st.subheader("Top 15 Skills on Selected Date")
 if not daily_skills.empty:
-    bar_data = daily_skills.sort_values('COUNT', ascending=False)
-    st.bar_chart(bar_data.set_index('SKILL')['COUNT'])
+    top_skills = daily_skills.sort_values("COUNT", ascending=False).head(15)
+    st.bar_chart(top_skills.set_index("SKILL")["COUNT"])
 else:
     st.info("Bar chart will show here once data is loaded.")
 
 # ------------------------
-# 📈 TREND LINE CHART
+# 📈 LINE CHART - Trend of Top Skill
 # ------------------------
 st.subheader("Skill Trend Over Time")
 if not daily_skills.empty:
-    top_skill = daily_skills.sort_values('COUNT', ascending=False)['SKILL'].iloc[0]
-    trend_data = df[df['SKILL'] == top_skill]
-    st.line_chart(trend_data.set_index('DATE')['COUNT'])
+    top_skill = daily_skills.sort_values("COUNT", ascending=False)["SKILL"].iloc[0]
+    trend_data = df[df["SKILL"] == top_skill]
+    trend_data_sorted = trend_data.sort_values("DATE")
+    st.line_chart(trend_data_sorted.set_index("DATE")["COUNT"])
 else:
     st.info("Line chart will show here once data is loaded.")
 
 # ------------------------
-# 🧾 RAW DATA
+# 📄 RAW DATA TABLE
 # ------------------------
 st.subheader("📄 Raw Data")
 st.dataframe(daily_skills)
