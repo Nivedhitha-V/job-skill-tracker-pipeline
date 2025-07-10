@@ -49,15 +49,15 @@ query = "SELECT * FROM top_skills_daily"
 df = pd.read_sql(query, conn)
 
 # Filter for selected date
-daily_skills = df[df['date'] == selected_date]
+daily_skills = df[df['DATE'] == selected_date]
 
 # ------------------------
 # 📊 BAR CHART
 # ------------------------
 st.subheader("Top 15 Skills on Selected Date")
 if not daily_skills.empty:
-    bar_data = daily_skills.sort_values('count', ascending=False)
-    st.bar_chart(bar_data.set_index('skill')['count'])
+    bar_data = daily_skills.sort_values('COUNT', ascending=False)
+    st.bar_chart(bar_data.set_index('SKILL')['COUNT'])
 else:
     st.info("Bar chart will show here once data is loaded.")
 
@@ -66,9 +66,9 @@ else:
 # ------------------------
 st.subheader("Skill Trend Over Time")
 if not daily_skills.empty:
-    top_skill = daily_skills.sort_values('count', ascending=False)['skill'].iloc[0]
-    trend_data = df[df['skill'] == top_skill]
-    st.line_chart(trend_data.set_index('date')['count'])
+    top_skill = daily_skills.sort_values('COUNT', ascending=False)['SKILL'].iloc[0]
+    trend_data = df[df['SKILL'] == top_skill]
+    st.line_chart(trend_data.set_index('DATE')['COUNT'])
 else:
     st.info("Line chart will show here once data is loaded.")
 
