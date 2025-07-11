@@ -22,21 +22,8 @@ To create a realistic, end-to-end data pipeline that simulates real-time trackin
 - Built a modular ETL pipeline to clean, extract, and normalize skill data
 - Ingested results into Snowflake
 - Visualized insights using both Power BI (offline) and a live Streamlit dashboard
-
-
-
----
-
-## Goals & Outcomes
-
-✅ Ingest and process job listing data (role, skills, company, location, date)  
-✅ Normalize & extract skillsets from long job descriptions  
-✅ Store and query structured skill data using Snowflake  
-✅ Visualize insights using **Power BI** & **Streamlit dashboards**  
-✅ Simulate daily pipeline runs with modular scripts  
-✅ Showcase a full-stack **DE project that mimics a real job environment**
-                 
-
+- Showcase a full-stack **DE project that mimics a real job environment**
+  
 ---
 
 ##  Project Architecture
