@@ -56,28 +56,26 @@ This project simulates a real-time job skill tracking pipeline — even without 
 - Helped identify top in-demand skills 
 
 4). **Simulated Daily Job Feed (Data Splitting Logic)**
-       - Split main cleaned dataset into 10 smaller files (daily1.csv to daily10.csv)
-       - Extracted skills from each, saved as: skills_day1.csv to skills_day10.csv
+- Split main cleaned dataset into 10 smaller files (daily1.csv to daily10.csv)
+- Extracted skills from each, saved as: skills_day1.csv to skills_day10.csv
 
 5). **Snowflake Cloud Data Warehouse (Ingestion via Python)**
-       - Used Snowflake Connector for Python to ingest daily skill CSVs
-       - Tables created manually via SQL; data inserted programmatically
-       - Sample SQL queries run to validate ingestion
+- Used Snowflake Connector for Python to ingest daily skill CSVs
+- Tables created manually via SQL; data inserted programmatically
+- Sample SQL queries run to validate ingestion
 
 
-6). **Power BI Dashboard (Offline, Local)**
-       - Visualized only **Top 15 Skills** using Snowflake as the backend
-       - Built using clustered bar charts and slicers for quick filtering
-       - Power BI file not hosted online (used for demo purpose only)
+6). **Power BI Dashboard**
+- Visualized only **Top 15 Skills** using Snowflake as the backend
+- Built using clustered bar charts and slicers for quick filtering
 
  7). **Streamlit Web App (Live via GitHub + Snowflake)**
-       - Dashboard built in Python, deployed via Streamlit Cloud
-       - Reads live skill data from Snowflake tables
-       - Visualizes:
-         ✔️ Top skills
-         ✔️ Skill frequency by date
-       - Interactive dropdowns to filter by skill or date
-       - No location, role, or company-based filtering (not present in daily skill data)
+- Dashboard built in Python, deployed via Streamlit Cloud
+- Reads live skill data from Snowflake tables
+- Visualizes:
+ - Top skills
+ - Skill frequency by date
+- Interactive dropdowns to filter by skill and date
 
 
 ---
