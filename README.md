@@ -46,14 +46,14 @@ This project simulates a real-time job skill tracking pipeline — even without 
 1). **Kaggle Job Listings Dataset (5K+ Records)**
 
 2). **Data Cleaning & Skill Normalization (Google Colab)**
-       - Removed nulls, duplicates, unwanted characters
-       - Extracted skills from job descriptions (JD) & normalized terms
-       - Grouped similar skills (e.g, 'Structured Query Language' → 'SQL')
-       - Created: top_150_skills.csv
+- Removed nulls, duplicates, unwanted characters
+- Extracted skills from job descriptions (JD) & normalized terms
+- Grouped similar skills (e.g, 'Structured Query Language' → 'SQL')
+- Created: top_150_skills.csv
 
 3). **Basic Skill Frequency Analysis (Google Colab)**
-       - Visualized skill counts using bar charts & word clouds
-       - Helped identify top in-demand skills 
+- Visualized skill counts using bar charts & word clouds
+- Helped identify top in-demand skills 
 
 4). **Simulated Daily Job Feed (Data Splitting Logic)**
        - Split main cleaned dataset into 10 smaller files (daily1.csv to daily10.csv)
