@@ -1,0 +1,21 @@
+skill,count,date
+python,317,2025-07-01
+sql,314,2025-07-01
+dataanalytics,150,2025-07-01
+spark,140,2025-07-01
+aws,133,2025-07-01
+data engineering,129,2025-07-01
+snowflake,113,2025-07-01
+datawarehouse,110,2025-07-01
+etl,103,2025-07-01
+visualization,103,2025-07-01
+datamodeling,96,2025-07-01
+machine learning,95,2025-07-01
+java,93,2025-07-01
+azure,85,2025-07-01
+powerbi,84,2025-07-01
+kafka,75,2025-07-01
+tableau,74,2025-07-01
+r,74,2025-07-01
+airflow,66,2025-07-01
+kubernetes,66,2025-07-01
