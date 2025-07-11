@@ -35,6 +35,7 @@ To create a realistic, end-to-end data pipeline that simulates real-time trackin
 ✅ Visualize insights using **Power BI** & **Streamlit dashboards**  
 ✅ Simulate daily pipeline runs with modular scripts  
 ✅ Showcase a full-stack **DE project that mimics a real job environment**
+                 
 
 ---
 
@@ -42,44 +43,34 @@ To create a realistic, end-to-end data pipeline that simulates real-time trackin
 
 This project simulates a real-time job skill tracking pipeline — even without live scraping — by mimicking daily data ingestion, transformation, storage, and dashboarding using real-world tools. Here's how the full flow works:
 
-            **Kaggle Job Listings Dataset (5K+ Records)**
-                             |
-                             v
-          **Data Cleaning & Skill Normalization (Google Colab)**
+1). **Kaggle Job Listings Dataset (5K+ Records)**
+
+2). **Data Cleaning & Skill Normalization (Google Colab)**
        - Removed nulls, duplicates, unwanted characters
        - Extracted skills from job descriptions (JD) & normalized terms
        - Grouped similar skills (e.g, 'Structured Query Language' → 'SQL')
        - Created: top_150_skills.csv
 
-                             |
-                             v
-            **Basic Skill Frequency Analysis (Google Colab)**
+3). **Basic Skill Frequency Analysis (Google Colab)**
        - Visualized skill counts using bar charts & word clouds
        - Helped identify top in-demand skills 
 
-                             |
-                             v
-         **Simulated Daily Job Feed (Data Splitting Logic)**
+4). **Simulated Daily Job Feed (Data Splitting Logic)**
        - Split main cleaned dataset into 10 smaller files (daily1.csv to daily10.csv)
        - Extracted skills from each, saved as: skills_day1.csv to skills_day10.csv
 
-                             |
-                             v
-          **Snowflake Cloud Data Warehouse (Ingestion via Python) **
+5). **Snowflake Cloud Data Warehouse (Ingestion via Python)**
        - Used Snowflake Connector for Python to ingest daily skill CSVs
        - Tables created manually via SQL; data inserted programmatically
        - Sample SQL queries run to validate ingestion
 
-                             |
-                             v
-              **Power BI Dashboard (Offline, Local)**
+
+6). **Power BI Dashboard (Offline, Local)**
        - Visualized only **Top 15 Skills** using Snowflake as the backend
        - Built using clustered bar charts and slicers for quick filtering
        - Power BI file not hosted online (used for demo purpose only)
 
-                             |
-                             v
-          **Streamlit Web App (Live via GitHub + Snowflake)**
+ 7). **Streamlit Web App (Live via GitHub + Snowflake)**
        - Dashboard built in Python, deployed via Streamlit Cloud
        - Reads live skill data from Snowflake tables
        - Visualizes:
